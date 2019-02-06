@@ -6,15 +6,10 @@ extern "C" NTSTATUS NTAPI RtlAdjustPrivilege(ULONG Privilege, BOOLEAN Enable, BO
 extern "C" NTSTATUS NTAPI NtRaiseHardError(LONG ErrorStatus, ULONG NumberOfParameters, ULONG UnicodeStringParameterMask,
 	PULONG_PTR Parameters, ULONG ValidResponseOptions, PULONG Response);
 
-void Crash()
+int main()
 {
 	BOOLEAN bl;
 	ULONG Response;
 	RtlAdjustPrivilege(19, TRUE, FALSE, &bl);
 	NtRaiseHardError(STATUS_ASSERTION_FAILURE, 0, 0, NULL, 6, &Response);
-}
-
-int main()
-{
-	Crash();
 }
